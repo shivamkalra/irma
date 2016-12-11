@@ -218,7 +218,7 @@ def select_n_per_category(data,
             lambda x: x[1]):
         if include_non_catgeorized or key != -1:
             ids = [k for k, _ in group]
-            n_mx = n if len(ids) > 10 else len(ids)
+            n_mx = n if len(ids) > n else len(ids)
             reduced_data.extend(random.sample(ids, n_mx))
             groups.extend([key] * n_mx)
 

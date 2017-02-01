@@ -188,10 +188,24 @@ def load_categories(path):
     return categories
 
 
-def load_data(path='./IRMA'):
+def try_to_find_data_directory():
+
+    try_paths = ['/mnt/work-general/dataset/IRMA/', '~/dataset/IRMA/', '/mnt/work/dataset/IRMA', './IRMA/']
+
+    for path in try_paths:
+        if os.path.exists(path):
+            return path
+
+    return './IRMA/'
+
+def load_data(path=None):
     """
     Load the IRMA dataset from the given root directory
     """
+
+    if path is None:
+        path = try_to_find_data_directory()
+
     categories = load_categories(path)
     return {
         'category': categories,
